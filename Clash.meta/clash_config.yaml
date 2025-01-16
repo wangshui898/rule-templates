@@ -1,0 +1,331 @@
+# 机场订阅，名称不能重复
+proxy-providers:
+  Airport_01:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: 🟢 全球直连
+    url: "订阅地址"
+      
+# 用于下载订阅时指定UA
+global-ua: clash
+    
+# 全局配置
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7894
+ipv6: false
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+  
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  
+# 控制面板
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+# 匹配进程 always/strict/off
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 30
+
+# 策略组选择和fakeip缓存
+profile:
+  store-selected: true
+  store-fake-ip: true
+  
+# 流量嗅探
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - "dlg.io.mi.com"
+    - "+.push.apple.com"
+    - "+.apple.com"
+    
+# 代理模式
+tun:
+  enable: true
+  stack: mixed
+  mtu: 9000
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  respect-rules: true
+  # 模式切换 redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  # 模式切换 whitelist/blacklist 
+  # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "+.lan"
+    - "+.local"
+    - "+.services.googleapis.cn"
+    - geosite:private
+    - geosite:cn
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver-policy:
+    "rule-set:private_domain,cn_domain":
+    - 223.5.5.5
+    - 119.29.29.29
+    "rule-set:geolocation-!cn":
+      - "https://dns.cloudflare.com/dns-query"
+      - "https://dns.google/dns-query"
+           
+proxies:
+- name: "🟢 全球直连"
+  type: direct
+  udp: true
+  
+# 策略组
+proxy-groups:
+  - name: 🌍 Google
+    type: select
+    proxies:
+      - 🚀 高速节点
+      - 🏡 原生家宽
+      - 🔯 故障转移
+      - 🟢 全球直连
+      
+  - name: 📲 电报消息
+    type: select
+    proxies:
+      - 🇸🇬 新加坡节点
+      - 🚀 高速节点
+      - 🔯 故障转移
+      - 🟢 全球直连
+      
+  - name: 🤖 OpenAi
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)韩|kr|korea|日|jp|japan|新加坡|sg|singapore|马来|my|malaysia|美国|us|unitedstates|united states|英国|gb|uk|united kingdom"
+
+  - name: 👨🏿‍💻 GitHub
+    type: select
+    proxies:
+      - 🚀 高速节点
+      - 🔯 故障转移
+      - 🟢 全球直连 
+ 
+  - name: 📹 油管视频
+    type: select
+    proxies:
+      - 🚀 高速节点
+      - 🔯 故障转移
+      - 🟢 全球直连 
+
+  - name: 𝕏 Twitter
+    type: select
+    proxies:
+      - 🚀 高速节点
+      - 🔯 故障转移
+      - 🟢 全球直连
+
+  - name: 🔞 不可言喻
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)韩|kr|korea|日|jp|japan|新加坡|sg|singapore|马来|my|malaysia|美国|us|unitedstates|united states|英国|gb|uk|united kingdom"
+
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 高速节点
+      - 🔰 节点选择
+      - 🔯 故障转移
+      - 🟢 全球直连 
+
+  - name: 🔰 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇰🇷 韩国节点
+      - 🇯🇵 日本节点
+      - 🇸🇬 新加坡节点
+      - 🇺🇲 美国节点
+      - 🇬🇧 英国节点
+      - 🟢 全球直连
+
+  - name: ♻️ 自动选择
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "^((?!(直连)).)*$"
+
+  - name: 🏡 原生家宽
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "家宽|家庭|原生"
+
+  - name: 🚀 高速节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)香港|hk|hongkong|hong kong|台|tw|taiwan|韩|kr|korea|日|jp|japan|新加坡|sg|singapore|马来|my|malaysia"
+
+  - name: 🔯 故障转移
+    type: fallback
+    include-all: true
+      
+  - name: 🇭🇰 香港节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)香港|hk|hongkong|hong kong"
+  - name: 🇹🇼 台湾节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)台|tw|taiwan"
+  - name: 🇰🇷 韩国节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)韩|kr|korea"
+  - name: 🇯🇵 日本节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)日|jp|japan"
+  - name: 🇸🇬 新加坡节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)新加坡|sg|singapore"
+  - name: 🇺🇲 美国节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)美国|us|unitedstates|united states"
+  - name: 🇬🇧 英国节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)英国|gb|uk|united kingdom"
+  
+# 规则
+rules:
+  - DOMAIN-SUFFIX,wangshui898.top,🟢 全球直连
+  - GEOSITE,private,🟢 全球直连
+  - GEOIP,cn,🟢 全球直连
+  - RULE-SET,Google,🌍 Google
+  - RULE-SET,Telegram,📲 电报消息
+  - RULE-SET,Openai,🤖 OpenAi
+  - RULE-SET,Github,👨🏿‍💻 GitHub
+  - RULE-SET,Youtube,📹 油管视频
+  - RULE-SET,Twitter,𝕏 Twitter
+  - GEOSITE,geolocation-!cn,🔰 节点选择
+  - GEOIP,cn,🟢 全球直连
+  - MATCH,🐟 漏网之鱼
+
+# 规则集锚点
+rule-anchor:
+  ip_yaml: &ip_yaml
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: yaml
+  domain_yaml: &domain_yaml
+    type: http
+    interval: 86400
+    behavior: domain
+    format: yaml
+  class_text: &class_text
+    type: http
+    interval: 86400
+    behavior: classical
+    format: text
+
+# 规则集
+rule-providers:
+  private_domain:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/private.yaml"
+  cn_domain:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.yaml"
+  geolocation-!cn:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.yaml"
+  Youtube:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/youtube.yaml"
+  Openai:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.yaml"
+  Github:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/github.yaml"
+  Telegram:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/telegram.yaml"
+  Google:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/google.yaml"
+  Twitter:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitter.yaml"
+  Porn:
+    <<: *domain_yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.yaml"
+ 
