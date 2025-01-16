@@ -274,6 +274,7 @@ rules:
   - RULE-SET,Github,👨🏿‍💻 GitHub
   - RULE-SET,Youtube,📹 油管视频
   - RULE-SET,Twitter,𝕏 Twitter
+  - RULE-SET,Porn,🔞 不可言喻
   - GEOSITE,geolocation-!cn,🔰 节点选择
   - GEOIP,cn,🟢 全球直连
   - MATCH,🐟 漏网之鱼
