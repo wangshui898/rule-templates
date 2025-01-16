@@ -268,13 +268,24 @@ rules:
   - DOMAIN-SUFFIX,wangshui898.top,🟢 全球直连
   - GEOSITE,private,🟢 全球直连
   - GEOIP,cn,🟢 全球直连
-  - RULE-SET,Google,🌍 Google
-  - RULE-SET,Telegram,📲 电报消息
-  - RULE-SET,Openai,🤖 OpenAi
-  - RULE-SET,Github,👨🏿‍💻 GitHub
-  - RULE-SET,Youtube,📹 油管视频
-  - RULE-SET,Twitter,𝕏 Twitter
-  - RULE-SET,Porn,🔞 不可言喻
+  - GEOIP,google,🌍 Google
+  - GEOSITE,google,🌍 Google
+  - GEOIP,cloudflare,🔰 节点选择
+  - GEOSITE,cloudflare,🔰 节点选择
+  - GEOSITE,telegram,📲 电报消息
+  - GEOIP,telegram,📲 电报消息
+  - GEOSITE,openai,🤖 OpenAi
+  - GEOSITE,github,👨🏿‍💻 GitHub
+  - GEOSITE,youtube,📹 油管视频
+  - GEOSITE,twitter,𝕏 Twitter
+  - GEOSITE,category-porn,🔞 不可言喻
+#  - RULE-SET,Google,🌍 Google
+#  - RULE-SET,Telegram,📲 电报消息
+#  - RULE-SET,Openai,🤖 OpenAi
+#  - RULE-SET,Github,👨🏿‍💻 GitHub
+#  - RULE-SET,Youtube,📹 油管视频
+#  - RULE-SET,Twitter,𝕏 Twitter
+#  - RULE-SET,Porn,🔞 不可言喻
   - GEOSITE,geolocation-!cn,🔰 节点选择
   - GEOIP,cn,🟢 全球直连
   - MATCH,🐟 漏网之鱼
