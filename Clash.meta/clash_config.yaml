@@ -266,12 +266,12 @@ proxy-groups:
 # 规则
 rules:
   - DOMAIN-SUFFIX,wangshui898.top,🟢 全球直连
-  - GEOIP,private,🟢 全球直连
-  - GEOSITE,cn,🟢 全球直连
+  - GEOIP,private,🟢 全球直连,no-resolve
+  - GEOIP,cn,🟢 全球直连,no-resolve
   - GEOIP,google,🌍 Google
   - GEOSITE,google,🌍 Google
-  - GEOIP,cloudflare,🔰 节点选择
-  - GEOSITE,cloudflare,🔰 节点选择
+  - GEOIP,cloudflare,🚀 高速节点
+  - GEOSITE,cloudflare,🚀 高速节点
   - GEOSITE,telegram,📲 电报消息
   - GEOIP,telegram,📲 电报消息
   - GEOSITE,openai,🤖 OpenAi
@@ -287,7 +287,6 @@ rules:
 #  - RULE-SET,Twitter,𝕏 Twitter
 #  - RULE-SET,Porn,🔞 不可言喻
   - GEOSITE,geolocation-!cn,🔰 节点选择
-  - GEOIP,cn,🟢 全球直连
   - MATCH,🐟 漏网之鱼
 
 # 规则集锚点
