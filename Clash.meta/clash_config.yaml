@@ -1,14 +1,14 @@
 # 机场订阅，名称不能重复
-proxy-providers:
-  ssr01:
-    type: http
-    interval: 1800
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-    proxy: 🟢 全球直连
-    url: "订阅地址"
+#proxy-providers:
+#  ssr01:
+#    type: http
+#    interval: 1800
+#    health-check:
+#      enable: true
+#      url: https://www.gstatic.com/generate_204
+#      interval: 300
+#    proxy: 🟢 全球直连
+#    url: "订阅地址"
       
 # 用于下载订阅时指定UA
 global-ua: clash
