@@ -1,14 +1,14 @@
 # 机场订阅，名称不能重复
-#proxy-providers:
-#  ssr01:
-#    type: http
-#    interval: 1800
-#    health-check:
-#      enable: true
-#      url: https://www.gstatic.com/generate_204
-#      interval: 300
-#    proxy: 🟢 全球直连
-#    url: "订阅地址"
+proxy-providers:
+  ssr01:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: 🟢 全球直连
+    url: "https://cloudfisher.one/jsk34?token=6e98f3795191af73d525e3b7543f1566"
       
 # 用于下载订阅时指定UA
 global-ua: clash
@@ -267,7 +267,7 @@ proxy-groups:
 rules:
   - DOMAIN-SUFFIX,wangshui898.top,🟢 全球直连
   - GEOSITE,private,🟢 全球直连
-  - GEOIP,cn,🟢 全球直连
+  - GEOSITE,cn,🟢 全球直连
   - GEOIP,google,🌍 Google
   - GEOSITE,google,🌍 Google
   - GEOIP,cloudflare,🔰 节点选择
