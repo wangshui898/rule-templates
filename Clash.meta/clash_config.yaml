@@ -147,7 +147,7 @@ proxy-groups:
     include-all: true
     tolerance: 20
     interval: 300
-    filter: "^((?!(直连|拦截)).)*$"
+    filter: "^((?!(直连|拦截|流量|套餐|官网|超时)).)*$"
     
   - name: 🪜 国外节点
     type: url-test
