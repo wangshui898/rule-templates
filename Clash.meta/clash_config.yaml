@@ -71,7 +71,7 @@ sniffer:
     
 # 代理模式
 tun:
-  enable: true
+  enable: false
   stack: mixed
   mtu: 9000
   dns-hijack:
