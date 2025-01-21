@@ -226,7 +226,8 @@ proxy-groups:
   
 # 规则
 rules:
-  - DOMAIN-SUFFIX,wangshui898.top,🟢 全球直连
+  - RULE-SET,custom_domain,🟢 全球直连
+  - RULE-SET,custom_ip,🟢 全球直连,no-resolve
   - RULE-SET,cn_ip,🟢 全球直连,no-resolve
   - RULE-SET,google_ip,🔰 节点选择
   - GEOSITE,google,🔰 节点选择
@@ -272,9 +273,12 @@ rule-providers:
   private_domain:
     <<: *domain_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/private.yaml"
-  private_ip:
+  custom_ip:
     <<: *ip_yaml
-    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/private.yaml"
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/custom_ip.yaml"
+  custom_domain:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/custom_domain.yaml"
   geolocation-!cn:
     <<: *domain_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.yaml"
@@ -287,4 +291,3 @@ rule-providers:
   telegram_ip:
     <<: *ip_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/telegram.yaml"
- 
