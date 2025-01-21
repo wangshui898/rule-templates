@@ -154,7 +154,7 @@ proxy-groups:
     include-all: true
     tolerance: 20
     interval: 300
-    filter: "(?i)韩|kr|korea|日|jp|japan|新加坡|sg|singapore|马来|my|malaysia|美国|us|unitedstates|united states|英国|gb|uk|united kingdom"
+    filter: "(?i)韩国|日本|新加坡|马来|美国|英国"
 
   - name: 🚀 高速节点
     type: url-test
@@ -222,7 +222,7 @@ proxy-groups:
     include-all: true
     tolerance: 20
     interval: 300
-    filter: "(?i)英国|gb|uk|united kingdom"
+    filter: "(?i)英国|uk|united kingdom"
   
 # 规则
 rules:
