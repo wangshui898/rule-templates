@@ -147,7 +147,7 @@ proxy-groups:
     include-all: true
     tolerance: 20
     interval: 300
-    filter: "^((?!(直连|拦截|流量|套餐|官网|超时)).)*$"
+    filter: "^((?!(直连|拦截|流量|套餐|官网|超时|收藏)).)*$"
     
   - name: 🪜 国外节点
     type: url-test
@@ -226,6 +226,9 @@ proxy-groups:
   
 # 规则
 rules:
+#  - RULE-SET,MetaCubeX_AD,🛑 全球拦截
+#  - RULE-SET,ACL4SSR_BanAD,🛑 全球拦截
+#  - RULE-SET,ACL4SSR_BanProgramAD,🛑 全球拦截
   - RULE-SET,custom_domain,🟢 全球直连
   - RULE-SET,custom_ip,🟢 全球直连,no-resolve
   - RULE-SET,cn_ip,🟢 全球直连,no-resolve
@@ -291,3 +294,12 @@ rule-providers:
   telegram_ip:
     <<: *ip_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/telegram.yaml"
+  MetaCubeX_AD:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.yaml"
+  ACL4SSR_BanAD:
+    <<: *class_text
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
+  ACL4SSR_BanProgramAD:
+    <<: *class_text
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
