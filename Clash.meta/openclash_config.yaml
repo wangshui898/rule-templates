@@ -1,6 +1,6 @@
 # 机场订阅，名称不能重复
 proxy-providers:
-  ssr01:
+  渔云机场:
     type: http
     interval: 1800
     health-check:
@@ -8,10 +8,19 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
     proxy: 🟢 全球直连
-    url: "订阅地址"
-      
+    url: "订阅地址1"
+  顶级机场:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+    proxy: 🟢 全球直连
+    url: "订阅地址2"
+          
 # 用于下载订阅时指定UA
-global-ua: clash
+global-ua: clash.meta
     
 # 全局配置
 port: 7890
@@ -129,9 +138,9 @@ proxy-groups:
   - name: 🔰 节点选择
     type: select
     proxies:
+      - 🚀 高速节点
       - ♻️ 自动选择
       - 🪜 国外节点
-      - 🚀 高速节点
       - 🏡 原生家宽
       - 🇭🇰 香港节点
       - 🇹🇼 台湾节点
@@ -140,6 +149,7 @@ proxy-groups:
       - 🇸🇬 新加坡节点
       - 🇺🇲 美国节点
       - 🇬🇧 英国节点
+      - 🔯 故障转移
       - 🟢 全球直连
         
   - name: ♻️ 自动选择
@@ -148,21 +158,21 @@ proxy-groups:
     tolerance: 20
     interval: 300
     filter: "^((?!(直连|拦截|流量|套餐|官网|超时|收藏)).)*$"
-    
-  - name: 🪜 国外节点
-    type: url-test
-    include-all: true
-    tolerance: 20
-    interval: 300
-    filter: "(?i)韩国|日本|新加坡|马来|美国|英国"
 
   - name: 🚀 高速节点
     type: url-test
     include-all: true
     tolerance: 20
     interval: 300
-    filter: "(?i)x2|x3|x4|x5"
-    
+    filter: "(?i)x2|2倍|x3|3倍|x4|4倍|x5|5倍"
+
+  - name: 🪜 国外节点
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)韩国|日本|新加坡|马来|美国|英国"
+ 
   - name: 🏡 原生家宽
     type: url-test
     include-all: true
@@ -230,19 +240,19 @@ rules:
 #  - RULE-SET,ACL4SSR_BanAD,🛑 全球拦截
 #  - RULE-SET,ACL4SSR_BanProgramAD,🛑 全球拦截
   - RULE-SET,custom_domain,🟢 全球直连
-  - RULE-SET,custom_ip,🟢 全球直连,no-resolve
-  - RULE-SET,cn_ip,🟢 全球直连,no-resolve
-  - RULE-SET,google_ip,🔰 节点选择
-  - GEOSITE,google,🔰 节点选择
-  - GEOIP,cloudflare_ip,🔰 节点选择
-  - GEOSITE,cloudflare,🔰 节点选择
+  - RULE-SET,custom_ip,🟢 全球直连
+  - RULE-SET,cn_ip,🟢 全球直连
+  - GEOSITE,category-porn,🪜 国外节点
+  - GEOSITE,openai,🪜 国外节点
   - GEOSITE,telegram,🔰 节点选择
   - RULE-SET,telegram_ip,🔰 节点选择
-  - GEOSITE,openai,🪜 国外节点
   - GEOSITE,github,🔰 节点选择
   - GEOSITE,youtube,🔰 节点选择
   - GEOSITE,twitter,🔰 节点选择
-  - GEOSITE,category-porn,🪜 国外节点
+  - RULE-SET,google_ip,🔰 节点选择
+  - GEOSITE,google,🔰 节点选择
+  - RULE-SET,cloudflare_ip,🔰 节点选择
+  - GEOSITE,cloudflare,🔰 节点选择
   - GEOSITE,cn,🟢 全球直连,no-resolve
   - GEOSITE,geolocation-!cn,🔰 节点选择
   - MATCH,🐟 漏网之鱼
@@ -294,12 +304,12 @@ rule-providers:
   telegram_ip:
     <<: *ip_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/telegram.yaml"
-  MetaCubeX_AD:
-    <<: *domain_yaml
-    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.yaml"
-  ACL4SSR_BanAD:
-    <<: *class_text
-    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
-  ACL4SSR_BanProgramAD:
-    <<: *class_text
-    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
+#  MetaCubeX_AD:
+#    <<: *domain_yaml
+#    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.yaml"
+#  ACL4SSR_BanAD:
+#    <<: *class_text
+#    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
+#  ACL4SSR_BanProgramAD:
+#    <<: *class_text
+#    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
