@@ -9,15 +9,15 @@ proxy-providers:
       interval: 300
     proxy: 🟢 全球直连
     url: "订阅地址1"
-  顶级机场:
-    type: http
-    interval: 1800
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-    proxy: 🟢 全球直连
-    url: "订阅地址2"
+#  顶级机场:
+#    type: http
+#    interval: 1800
+#    health-check:
+#      enable: true
+#      url: https://www.gstatic.com/generate_204
+#      interval: 300
+#    proxy: 🟢 全球直连
+#    url: "订阅地址2"
           
 # 用于下载订阅时指定UA
 global-ua: clash.meta
@@ -138,8 +138,8 @@ proxy-groups:
   - name: 🔰 节点选择
     type: select
     proxies:
-      - 🚀 高速节点
       - ♻️ 自动选择
+      - 🚀 高速节点
       - 🪜 国外节点
       - 🏡 原生家宽
       - 🇭🇰 香港节点
@@ -239,19 +239,19 @@ rules:
 #  - RULE-SET,MetaCubeX_AD,🛑 全球拦截
 #  - RULE-SET,ACL4SSR_BanAD,🛑 全球拦截
 #  - RULE-SET,ACL4SSR_BanProgramAD,🛑 全球拦截
-  - RULE-SET,custom_domain,🟢 全球直连
-  - RULE-SET,custom_ip,🟢 全球直连
-  - GEOIP,cn,🟢 全球直连
+  - RULE-SET,direct_domain,🟢 全球直连
+  - RULE-SET,direct_ip,🟢 全球直连
+  - RULE-SET,proxy_!cn_domain,🪜 国外节点
   - GEOSITE,openai,🪜 国外节点
+  - GEOSITE,meta,🪜 国外节点
   - GEOSITE,category-porn,🪜 国外节点
+  - GEOSITE,gateio,🪜 国外节点
+  - GEOSITE,binance,🪜 国外节点
   - GEOSITE,telegram,🔰 节点选择
-  - GEOIP,telegram,🔰 节点选择
   - GEOSITE,github,🔰 节点选择
   - GEOSITE,youtube,🔰 节点选择
   - GEOSITE,twitter,🔰 节点选择
-  - GEOIP,google,🔰 节点选择
   - GEOSITE,google,🔰 节点选择
-  - GEOIP,cloudflare,🔰 节点选择
   - GEOSITE,cloudflare,🔰 节点选择
   - GEOSITE,cn,🟢 全球直连
   - GEOSITE,geolocation-!cn,🔰 节点选择
@@ -286,15 +286,18 @@ rule-providers:
   private_domain:
     <<: *domain_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/private.yaml"
-  custom_ip:
-    <<: *ip_yaml
-    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/custom_ip.yaml"
-  custom_domain:
-    <<: *domain_yaml
-    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/custom_domain.yaml"
   geolocation-!cn:
     <<: *domain_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.yaml"
+  direct_ip:
+    <<: *ip_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/direct_ip.yaml"
+  direct_domain:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/direct_domain.yaml"
+  proxy_!cn_domain:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/proxy_!cn_domain.yaml"
 #  MetaCubeX_AD:
 #    <<: *domain_yaml
 #    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.yaml"
