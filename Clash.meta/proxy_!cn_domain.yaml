@@ -1,1 +1,3 @@
 # 代理域名, 不走香港台湾
+payload:
+    - +.mexc.com
