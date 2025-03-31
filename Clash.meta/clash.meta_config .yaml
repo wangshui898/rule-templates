@@ -1,15 +1,19 @@
 # 机场订阅，名称不能重复
 proxy-providers:
-  渔云机场:
+  订阅1:
+    url: "订阅地址1"
     type: http
-    interval: 1800
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
     proxy: 🟢 全球直连
-    url: "订阅地址1"
-#  顶级机场:
+    override:
+      skip-cert-verify: true
+
+#  订阅2:
+#    url: "订阅地址2"
 #    type: http
 #    interval: 1800
 #    health-check:
@@ -17,25 +21,56 @@ proxy-providers:
 #      url: https://www.gstatic.com/generate_204
 #      interval: 300
 #    proxy: 🟢 全球直连
-#    url: "订阅地址2"
-          
-# 用于下载订阅时指定UA
-global-ua: clash.meta
+#    override:
+#      skip-cert-verify: true
+
+proxies:
+  - name: 🟢 全球直连
+    type: direct
+    udp: true
     
 # 全局配置
+
 port: 7890
 socks-port: 7891
 redir-port: 7892
 mixed-port: 7893
 tproxy-port: 7894
-ipv6: false
 allow-lan: true
+bind-address: "*"
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
-  
-geodata-mode: false
-geodata-loader: standard
-geo-auto-update: true
+log-level: warning
+global-ua: clash.meta                # 用于下载订阅时指定UA, 优先级低于proxy-providers.机场.header.User-Agent
+mode: rule                           # 代理模式, 默认rule
+find-process-mode: 'off'             # 进程匹配: always/strict
+global-client-fingerprint: chrome    # 客户端指纹
+keep-alive-idle: 600
+keep-alive-interval: 30
+disable-keep-alive: false            # 关闭上面两项, 用于移动设备省电
+profile:                             # 策略组选择和fakeip缓存
+  store-selected: true
+  store-fake-ip: true
+
+# TUN配置
+tun:
+  enable: true
+  stack: mixed                       # system/gvisor/mixed
+  mtu: 9000
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  route-exclude-address-set:
+    - "rule-set:cn_ip"
+
+# GEO数据库配置
+geodata-mode: false                  # true/false
+geodata-loader: standard             # memconservative小内存/standard标准内存
+geo-auto-update: true                # true GEOIP Dat/fasle MMDB
 geo-update-interval: 24
 geox-url:
   geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
@@ -46,19 +81,9 @@ geox-url:
 # 控制面板
 external-controller: 0.0.0.0:9090
 secret: ""
-external-ui: ui
-external-ui-url: "https://ghproxy.wangshui898.top/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-
-# 匹配进程 always/strict/off
-find-process-mode: strict
-global-client-fingerprint: chrome
-keep-alive-idle: 600
-keep-alive-interval: 30
-
-# 策略组选择和fakeip缓存
-profile:
-  store-selected: true
-  store-fake-ip: true
+#external-ui: ui
+external-ui-name: zashboard
+external-ui-url: "https://ghproxy.wangshui898.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
   
 # 流量嗅探
 sniffer:
@@ -74,65 +99,44 @@ sniffer:
   force-domain:
     - +.v2ex.com
   skip-domain:
-    - "dlg.io.mi.com"
-    - "+.push.apple.com"
-    - "+.apple.com"
+    - "rule-set:private_domain,cn_domain"
     
-# 代理模式
-tun:
-  enable: false
-  stack: mixed
-  mtu: 9000
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  
 # DNS模块
 dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: false
   respect-rules: true
-  # 模式切换 redir-host / fake-ip
-  enhanced-mode: fake-ip
+  enhanced-mode: fake-ip                   # 模式切换 redir-host / fake-ip
   fake-ip-range: 28.0.0.1/8
-  # 模式切换 whitelist/blacklist 
-  # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
+  fake-ip-filter-mode: blacklist           # 模式切换 whitelist/blacklist, 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter:                          # 黑名单模式: 即名单列表中配置匹配成功走redir-host模式
     - "+.lan"
     - "+.local"
     - "+.services.googleapis.cn"
-    - geosite:private
-    - geosite:cn
-  default-nameserver:
+    - "rule-set:private_domain,cn_domain"
+  default-nameserver:                            # 为下面域名形式的DNS服务器做解析
     - 223.5.5.5
     - 119.29.29.29
-  proxy-server-nameserver:
+  direct-nameserver:                             # 为配置直连规则的域名做解析, 前提direct-nameserver-follow-policy设置为false
+    - 223.5.5.5
+  direct-nameserver-follow-policy: false         # 设置为false, direct-nameserver配置优先; 设置为true, direct-nameserver配置不优先
+  proxy-server-nameserver:                       # proxies配置中负责代理域名服务的DNS解析
     - 223.5.5.5
     - 119.29.29.29
-  nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  nameserver-policy:
+  nameserver-policy:                             # 真正的代理DNS匹配规则
     "rule-set:private_domain,cn_domain":
+      - 223.5.5.5
+      - 119.29.29.29
+    "rule-set:geolocation-!cn":
+      - "tls://8.8.4.4"#🔰 节点选择
+      - "tls://1.1.1.1"#🔰 节点选择&h3=true
+#      - "https://dns.cloudflare.com/dns-query"
+#      - "https://dns.google/dns-query"
+  nameserver:                                    # 主域名服务器, 访问国内必备
     - 223.5.5.5
     - 119.29.29.29
-    "rule-set:geolocation-!cn":
-      - "https://dns.cloudflare.com/dns-query"
-      - "https://dns.google/dns-query"
- 
-proxies:
-  - name: 🟢 全球直连
-    type: direct
-    udp: true
-  - name: 🛑 全球拦截
-    type: reject
-    udp: true
-    
+
 # 策略组
 proxy-groups:
   - name: 🔰 节点选择
@@ -241,20 +245,25 @@ rules:
 #  - RULE-SET,ACL4SSR_BanProgramAD,🛑 全球拦截
   - RULE-SET,direct_domain,🟢 全球直连
   - RULE-SET,direct_ip,🟢 全球直连
+
   - RULE-SET,proxy_!cn_domain,🪜 国外节点
+  - RULE-SET,category-ai-!cn,🪜 国外节点
   - GEOSITE,openai,🪜 国外节点
-  - GEOSITE,meta,🪜 国外节点
   - GEOSITE,category-porn,🪜 国外节点
   - GEOSITE,gateio,🪜 国外节点
   - GEOSITE,binance,🪜 国外节点
+  - GEOIP,telegram,🔰 节点选择
   - GEOSITE,telegram,🔰 节点选择
   - GEOSITE,github,🔰 节点选择
   - GEOSITE,youtube,🔰 节点选择
   - GEOSITE,twitter,🔰 节点选择
+  - GEOIP,google,🔰 节点选择
   - GEOSITE,google,🔰 节点选择
+  - GEOIP,cloudflare,🔰 节点选择
   - GEOSITE,cloudflare,🔰 节点选择
-  - GEOSITE,cn,🟢 全球直连
-  - GEOSITE,geolocation-!cn,🔰 节点选择
+  - RULE-SET,geolocation-!cn,🔰 节点选择
+  - RULE-SET,cn_domain,🟢 全球直连
+  - RULE-SET,cn_ip,🟢 全球直连
   - MATCH,🐟 漏网之鱼
 
 # 规则集锚点
@@ -268,7 +277,16 @@ rule-anchor:
     type: http
     interval: 86400
     behavior: domain
-    format: yaml
+  ip_mrs: &ip_mrs
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+  domain_mrs: &domain_mrs
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
   class_text: &class_text
     type: http
     interval: 86400
@@ -289,6 +307,9 @@ rule-providers:
   geolocation-!cn:
     <<: *domain_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/geolocation-!cn.yaml"
+  category-ai-!cn:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
   direct_ip:
     <<: *ip_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/direct_ip.yaml"
