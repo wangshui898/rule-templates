@@ -1,6 +1,6 @@
 # 机场订阅，名称不能重复
 proxy-providers:
-  订阅1:
+  渔云机场:
     url: "订阅地址1"
     type: http
     interval: 86400
@@ -12,7 +12,7 @@ proxy-providers:
     override:
       skip-cert-verify: true
 
-#  订阅2:
+#  顶级机场:
 #    url: "订阅地址2"
 #    type: http
 #    interval: 1800
@@ -87,7 +87,7 @@ external-ui-url: "https://ghproxy.wangshui898.top/https://github.com/Zephyruso/z
   
 # 流量嗅探
 sniffer:
-  enable: true
+  enable: false
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -249,7 +249,10 @@ rules:
   - RULE-SET,proxy_!cn_domain,🪜 国外节点
   - RULE-SET,category-ai-!cn,🪜 国外节点
   - GEOSITE,openai,🪜 国外节点
+  - GEOSITE,pikpak,🪜 国外节点
   - GEOSITE,category-porn,🪜 国外节点
+  - GEOSITE,javdb,🪜 国外节点
+  - GEOSITE,javbus,🪜 国外节点
   - GEOSITE,gateio,🪜 国外节点
   - GEOSITE,binance,🪜 国外节点
   - GEOIP,telegram,🔰 节点选择
