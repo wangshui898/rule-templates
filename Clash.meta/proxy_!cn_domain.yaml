@@ -11,15 +11,21 @@ payload:
   - +.accounts.binance.com
   - +.api.binance.com
   - +.p2p.binance.com
-  - +.gate.io
-  - +.kucoin.com
-  - +.okx.com
-  - +.web3.okx.com
+  - +.coinbase.com
+  - +.exchange.coinbase.com
+  - +.api.coinbase.com
+  - +.pro.coinbase.com
+  - +.support.coinbase.com
+  - +.kraken.com
   - +.huobi.com
   - +.htx.com
+  - +.okx.com
+  - +.web3.okx.com
+  - +.gate.io
+  - +.kucoin.com
   - +.bitfinex.com
   - +.bitstamp.net
-  - +.coinbase.com
-  - +.kraken.com
   - +.gemini.com
   - +.crypto.com
+  - +.bitmart.com
+  - +.bitkub.com
