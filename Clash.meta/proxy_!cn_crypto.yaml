@@ -2,8 +2,7 @@ payload:
   - +.mexc.com
   - +.bitget.cloud
   - +.bitget.com
-  - +.bitkeep.biz
-  - +.bitkeep.app
+  - +.bitkeep.*
   - +.binance.com
   - +.binance.us
   - +.binance.org
