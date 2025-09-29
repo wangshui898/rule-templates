@@ -78,6 +78,7 @@ payload:
   # 卧龙资源
   - +.wlcdn88.com
   - +.imgwolong.com
+  - +.guoluche.com
   # 非凡资源
   - +.ffzyapi.com
   - +.ffzy-online5.com
@@ -96,6 +97,7 @@ payload:
   - +.rycjapi.com
   - +.ryplay3.com
   - +.ryzypics.com
+  - +.ry-pic.com
   # 天涯资源
   - +.tyyszyapi.com
   - +.tyyszywvod5
