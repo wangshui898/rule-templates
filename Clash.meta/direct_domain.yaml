@@ -32,7 +32,15 @@ payload:
     - +.bfzy9.tv
     # ikun资源
     - +.ikunzy.*
-    - +.ikzy*.com
+    - +.ikzy1.com
+    - +.ikzy2.com
+    - +.ikzy3.com
+    - +.ikzy4.com
+    - +.ikzy5.com
+    - +.ikzy6.com
+    - +.ikzy7.com
+    - +.ikzy8.com
+    - +.ikzy9.com
     # 电影天堂资源
     - +.dyttzy.tv
     - +.dyttzy*.tv
