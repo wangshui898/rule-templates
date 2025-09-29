@@ -81,11 +81,41 @@ payload:
     - +.jisuziyuan.com
     - +.jszy666.com
     - +.jszy333.com
+    # 茅台资源
+    - +.mtzy.me
+    - +.mtzy0.com
+    - +.maotaizy.cc
+    - +.maotaizy.com
+    - +.maotaiziyuan.com
+    # 红牛资源
+    - +.hongniuziyuan.net
+    - +.hongniuzy.net
+    - +.hongniuziyuan.com
+    - +.hongniuzy.com
+    - +.hongniuzy.tv
+    - +.hongniuziyuan.tv
+    # 光速资源
+    - +.guangsuzy.com
+    - +.guangsuziyuan.com
+    - +.guangsuzy.net
+    - +.guangsuziyuan.net
+    # 豆瓣资源
+    - +.dbzy.tv
+    - +.doubanzy.net
+    - +.doubanzy.cc
+    - +.doubanziyuan.com
+    - +.doubanziyuan.net
+    # 无尽资源
+    - +.wujinzy.com
+    - +.wujinzy.net
+    - +.wujinzy.co
+    - +.wujinzy.cc
 
 # 采集接口
     # 豆瓣采集
     - +.cmliussss.net
     # 卧龙资源
+
     # 非凡资源
     - +.ffzyapi.com
     # 暴风资源
@@ -104,27 +134,48 @@ payload:
     - +.360zyx.vip
     # 极速资源
     - +.jszyapi.tv
+    # 茅台资源
+    # 红牛资源
+    - +.hongniuzy2.com
+    - +.hongniuzy3.com
+    # 光速资源
+    - +.guangsuapi.com
+    # 豆瓣资源
+    - +.dbzy5.com
+    # 无尽资源
+    - +.https://api.wujinapi.me/api.php/provide/vod
 
-  # CDN资源
+
+  # 解析加速
     - +.wlcdn88.com
-    - +.imgwolong.com
-    - +.guoluche.com
-    - +.ry-pic.com
-    - +.pic.com
-    - +.ryplay3.com
-    - +.ryzypics.com
-    - +.lymryy.com
-    - +.ljhsnzpc.com
-    - +.tyyszywvod5.com
-    - +.tyyswimg.com
-    - +.ffzy-online5.com
-    - +.rrcdnbf5.com
+    - +.wolongm3u8.com
+    - +.pic.wlongimg.com
+    - +.ffzyplay.com
+    - +.ffzy888.com
+    - +.bfbfvip.com
+    - +.bfllvip.com
+    - +.bfzytu.com
     - +.bfikuncdn.com
-    - +.dytt-play.com
-    - +.dytt-cinema.com
-
-
-
+    - +.dyttzyplay.com
+    - +.ryplayer.com
+    - +.360jiexi.com
+    - +.zyjiexi.com
+    - +.jsjiexi.com
+    - +.jisjiexi.com
+    - +.myqqdd.com
+    - +.mtjiexi.cc
+    - +.maotaijiexi.com
+    - +.hnjiexi.com
+    - +.hongniujiexi.com
+    - +.gszyv.com
+    - +.guangsujx.com
+    - +.gsuus.com
+    - +.rsfcxq.com
+    - +.dbjiexi.com
+    - +.dbjiexi.com
+    - +.vdbzy8.com
+    - +.xllmcms.com
+    - +.qrssuv.com
 
 
 
