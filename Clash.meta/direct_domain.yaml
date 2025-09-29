@@ -1,6 +1,68 @@
 payload:
+# 常用网址
     - +.wangshui898.top
     - +.oray.com
     - +.oray.net
     - +.rc.sunlogin.net
     - +.sunlogin.net
+
+# 影视资源
+  # 访问域名
+    # 卧龙资源
+    - +.wolongzy.*
+    - +.wolongzyw.*
+    - +.wlzyw.*
+    # 非凡资源
+    - +.ffzy*.tv
+    - +.ffzy*.com
+    # 暴风资源
+    - +.bfzy.tv
+    - +.bfzy*.tv
+    # ikun资源
+    - +.ikunzy.*
+    - +.ikzy*.com
+    # 电影天堂资源
+    - +.dyttzy.tv
+    - +.dyttzy*.tv
+    # 如意资源
+    - +.ryzyw.com
+    - +.ryzy1.tv
+    # 天涯资源
+    - +.tyyszy.com
+    - +.tyyszy*.com
+    # 360资源
+    - +.360zy.*
+    - +.360zy*.com
+    # 极速资源
+    - +.jszy*.com
+    - +.jisuz*.*
+
+  # 采集&&播放接口
+    # 卧龙资源
+    - +.wlcdn*.com
+    # 非凡资源
+    - +.ffzyapi.com
+    # 暴风资源
+    - +.bfzyapi.com
+    # ikun资源
+    - +.ikunzyapi.com
+    # 电影天堂资源
+    - +.dyttzyapi.com
+    # 如意资源
+    - +.rytvapi.com
+    - +.rycjapi.com
+    # 天涯资源
+    - +.tyyszyapi.com
+    # 360资源
+    - +.360zyzz.com
+    # 极速资源
+    - +.jszyapi.tv
+    
+
+
+
+
+
+
+
+
