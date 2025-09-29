@@ -16,8 +16,7 @@ payload:
     - +.ffzy*.tv
     - +.ffzy*.com
     # 暴风资源
-    - +.bfzy.tv
-    - +.bfzy2.tv
+    - DOMAIN-KEYWORD,bfzy
     # ikun资源
     - +.ikunzy.*
     - +.ikzy*.com
