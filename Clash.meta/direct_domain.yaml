@@ -13,47 +13,96 @@ payload:
   - +.wolongzyw.*
   - +.wlzyw.*
   # 非凡资源
-  - +.ffzy*.tv
-  - +.ffzy*.com
+  - +.ffzy.tv
+  - +.ffzy1.tv
+  - +.ffzy2.tv
+  - +.ffzy3.tv
+  - +.ffzy4.tv
+  - +.ffzy5.tv
   # 暴风资源
-  - DOMAIN-KEYWORD,bfzy
+  - +.bfzy.tv
+  - +.bfzy1.tv
+  - +.bfzy2.tv
+  - +.bfzy3.tv
+  - +.bfzy4.tv
+  - +.bfzy5.tv
+  - +.bfzy6.tv
+  - +.bfzy7.tv
+  - +.bfzy8.tv
+  - +.bfzy9.tv
   # ikun资源
   - +.ikunzy.*
   - +.ikzy*.com
   # 电影天堂资源
   - +.dyttzy.tv
   - +.dyttzy*.tv
+  - +.dyttzy1.tv
+  - +.dyttzy2.tv
+  - +.dyttzy3.tv
+  - +.dyttzy4.tv
+  - +.dyttzy5.tv
   # 如意资源
   - +.ryzyw.com
   - +.ryzy1.tv
+  - +.ryzy2.tv
+  - +.ryzy3.tv
+  - +.ryzy4.tv
+  - +.ryzy5.tv
+  - +.ryzy6.tv
+  - +.ryzy7.tv
+  - +.ryzy8.tv
+  - +.ryzy9.tv
   # 天涯资源
   - +.tyyszy.com
-  - +.tyyszy*.com
+  - +.tyyszy5.com
   # 360资源
   - +.360zy.*
-  - +.360zy*.com
+  - +.360zy.com
+  - +.360zy1.com
+  - +.360zy2.com
+  - +.360zy3.com
+  - +.360zy4.com
+  - +.360zy5.com
+  - +.360zy6.com
+  - +.360zy7.com
+  - +.360zy8.com
+  - +.360zy9.com
   # 极速资源
-  - +.jszy*.com
-  - +.jisuz*.*
+  - +.jisuzy.com
+  - +.jisuzy.tv
+  - +.jisuziyuan.com
+  - +.jszy666.com
+  - +.jszy333.com
 
   # 采集&&播放接口
   # 卧龙资源
-  - +.wlcdn*.com
+  - +.wlcdn88.com
+  - +.imgwolong.com
   # 非凡资源
   - +.ffzyapi.com
+  - +.ffzy-online5.com
   # 暴风资源
   - +.bfzyapi.com
+  - +.rrcdnbf5.com
   # ikun资源
   - +.ikunzyapi.com
+  - +.bfikuncdn.com
   # 电影天堂资源
   - +.dyttzyapi.com
+  - +.dytt-play.com
+  - +.dytt-cinema.com
   # 如意资源
   - +.rytvapi.com
   - +.rycjapi.com
+  - +.ryplay3.com
+  - +.ryzypics.com
   # 天涯资源
   - +.tyyszyapi.com
+  - +.tyyszywvod5
+  - +.tyyswimg.com
   # 360资源
   - +.360zyzz.com
+  - +.360zyx.vip
   # 极速资源
   - +.jszyapi.tv
     
