@@ -75,6 +75,8 @@ payload:
   - +.jszy333.com
 
   # 采集&&播放接口
+  # 豆瓣采集
+  - +.douban.cmliussss.net
   # 卧龙资源
   - +.wlcdn88.com
   - +.imgwolong.com
