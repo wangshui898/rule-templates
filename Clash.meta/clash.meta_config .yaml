@@ -2,7 +2,7 @@
 proxy-providers:
   渔云机场:
     url: "订阅地址1"
-    type: http
+    输入: http
     interval: 86400
     health-check:
       enable: true
@@ -26,7 +26,7 @@ proxy-providers:
 
 proxies:
   - name: 🟢 全球直连
-    type: direct
+    输入: direct
     udp: true
     
 # 全局配置
@@ -66,6 +66,7 @@ tun:
   auto-detect-interface: true
   route-exclude-address-set:
     - "rule-set:cn_ip"
+    - "rule-set:direct_ip"
 
 # GEO数据库配置
 geodata-mode: false                  # true/false
@@ -176,6 +177,13 @@ proxy-groups:
     tolerance: 20
     interval: 300
     filter: "(?i)韩国|日本|新加坡|马来|美国|英国"
+
+  - name: 🪙 虚拟货币
+    type: url-test
+    include-all: true
+    tolerance: 20
+    interval: 300
+    filter: "(?i)韩国|日本|美国|英国"
  
   - name: 🏡 原生家宽
     type: url-test
@@ -247,14 +255,18 @@ rules:
   - RULE-SET,direct_ip,🟢 全球直连
 
   - RULE-SET,proxy_!cn_domain,🪜 国外节点
+  - RULE-SET,proxy_!cn_crypto,🪙 虚拟货币
   - RULE-SET,category-ai-!cn,🪜 国外节点
+  - RULE-SET,category-porn-!cn,🪜 国外节点
   - GEOSITE,openai,🪜 国外节点
+  - GEOSITE,google-gemini,🪜 国外节点
   - GEOSITE,pikpak,🪜 国外节点
   - GEOSITE,category-porn,🪜 国外节点
   - GEOSITE,javdb,🪜 国外节点
   - GEOSITE,javbus,🪜 国外节点
   - GEOSITE,gateio,🪜 国外节点
   - GEOSITE,binance,🪜 国外节点
+  - GEOSITE,okx,🪜 国外节点
   - GEOIP,telegram,🔰 节点选择
   - GEOSITE,telegram,🔰 节点选择
   - GEOSITE,github,🔰 节点选择
@@ -313,6 +325,9 @@ rule-providers:
   category-ai-!cn:
     <<: *domain_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
+  category-porn-!cn:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.yaml"
   direct_ip:
     <<: *ip_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/direct_ip.yaml"
@@ -322,6 +337,9 @@ rule-providers:
   proxy_!cn_domain:
     <<: *domain_yaml
     url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/proxy_!cn_domain.yaml"
+  proxy_!cn_crypto:
+    <<: *domain_yaml
+    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/wangshui898/rule-templates/refs/heads/main/Clash.meta/proxy_!cn_crypto.yaml"
 #  MetaCubeX_AD:
 #    <<: *domain_yaml
 #    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.yaml"
@@ -331,3 +349,4 @@ rule-providers:
 #  ACL4SSR_BanProgramAD:
 #    <<: *class_text
 #    url: "https://ghproxy.wangshui898.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
+
